@@ -1,14 +1,14 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum">
-  <title>Portal Bitcoin</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Detalhes</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <!-- HEADER -->
+
   <header class="text-white py-3 d-flex flex-column flex-md-row justify-content-between align-items-center">
     <div class="titulo">
       <h1 class="m-0 fs-2">Portal Bitcoin</h1>
@@ -17,62 +17,47 @@
       <img src="img/btc-main.png" alt="Logo" class="img-fluid float-start" style="max-height: 80px;">
     </div>
     <nav class="links">
-      <a href="#" class="text-white text-decoration-none mx-3">Início</a>
+      <a href="index.html" class="text-white text-decoration-none mx-3">Início</a>
       <a href="#" class="text-white text-decoration-none mx-3">Sobre</a>
       <a href="#" class="text-white text-decoration-none mx-3">Contato</a>
     </nav>
   </header>
 
-  <!-- LINHA -->
   <div class="linha"></div>
 
-  <!-- MAIN -->
   <main class="flex-grow-1">
     <div class="container text-center my-5">
-      <div class="row g-4 align-items-stretch">
-        
-        <div class="col-md-4">
-          <div class="bloco h-100 p-3">
-            <img src="img/btc2.png" alt="Imagem 1" class="w-100 rounded mb-3">
-            <h4>O que é Bitcoin?</h4>
-            <p>
-              O Bitcoin é a primeira e mais conhecida criptomoeda do mundo, criada em 2009 por uma pessoa (ou grupo) sob o pseudônimo Satoshi Nakamoto. Ele funciona como um dinheiro digital descentralizado, ou seja, não é controlado por governos ou bancos, mas sim por uma rede de computadores que validam e registram todas as transações em um livro público chamado blockchain. <br>
-              A principal ideia do Bitcoin é permitir transferências de valor diretas entre pessoas de forma rápida, segura e transparente, sem intermediários. Seu valor é limitado (máximo de 21 milhões de unidades), o que o torna escasso e, muitas vezes, comparado ao ouro digital.
-            </p>
-          </div>
+      <div class="row justify-content-center">
+        <div id="detalhe" class="col-md-8 bloco h-100 p-3 text-white">
         </div>
-
-        <div class="col-md-4">
-          <div class="bloco h-100 p-3">
-            <img src="img/btc1.png" alt="Imagem 2" class="w-100 rounded mb-3">
-            <h4>Como começar?</h4>
-            <p>
-              As carteiras de Bitcoin (wallets) são programas ou dispositivos que permitem armazenar, enviar e receber bitcoins com segurança. Elas podem ser digitais (em aplicativos no celular ou computador), online (em sites e corretoras), ou até físicas (hardware wallets e carteiras de papel), oferecendo diferentes níveis de praticidade e proteção. <br>
-              Para comprar Bitcoin, é possível usar corretoras (exchanges), que aceitam transferência bancária, Pix ou cartão, ou recorrer a P2P (pessoa a pessoa), comprando diretamente de outros usuários. Também existem caixas eletrônicos de Bitcoin em alguns lugares. A escolha do meio depende do nível de segurança, praticidade e taxas que o usuário deseja.
-            </p>
-          </div>
+        <div class="text-center mt-3">
+          <a href="index.html" class="text-white text-decoration-none btn btn-dark">Voltar</a>
         </div>
-
-        <div class="col-md-4">
-          <div class="bloco h-100 p-3">
-            <img src="img/eth-sol.png" alt="Imagem 3" class="w-100 rounded mb-3">
-            <h4>Investimentos</h4>
-            <p>
-              Além do Bitcoin, existem diversas criptomoedas importantes que cumprem papéis diferentes no mercado. O Ethereum (ETH), por exemplo, é a segunda maior e ficou famoso por permitir a criação de contratos inteligentes e aplicativos descentralizados. Já moedas como Tether (USDT) e USD Coin (USDC) são chamadas de stablecoins, pois têm seu valor atrelado ao dólar, oferecendo mais estabilidade para quem quer negociar sem se preocupar com a alta volatilidade. <br>
-              Outras redes como Cardano (ADA) e Solana (SOL) competem diretamente com o Ethereum, trazendo soluções que buscam mais velocidade, escalabilidade e eficiência. Essas criptomoedas mostram que o universo das “altcoins” vai muito além do Bitcoin, ampliando as possibilidades de uso da tecnologia blockchain em áreas como pagamentos, investimentos, contratos digitais e finanças descentralizadas.
-            </p>
-          </div>
-        </div>
-
       </div>
     </div>
   </main>
 
-  <!-- FOOTER -->
   <footer class="py-2 text-center text-white">
     © 2025 Portal Bitcoin
   </footer>
 
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="app.js"></script>
+  <script>
+    const params = new URLSearchParams(window.location.search);
+    const id = params.get('id');
+
+    const item = itens.find(i => i.id == id);
+
+    if(item){
+      const detalhe = document.getElementById('detalhe');
+      detalhe.innerHTML = `
+        <h4>${item.titulo}</h4>
+        <img src="${item.img}" alt="${item.titulo}" class="w-100 rounded mb-3">
+        <p>${item.texto}</p>
+      `;
+    } else {
+      document.getElementById('detalhe').innerHTML = "<p>Item não encontrado.</p>";
+    }
+  </script>
 </body>
 </html>
